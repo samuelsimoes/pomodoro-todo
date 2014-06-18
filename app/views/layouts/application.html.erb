@@ -10,5 +10,6 @@
 <%= yield %>
 
 <%= javascript_include_tag 'application' %>
+<%= javascript_include_tag controller_path if javascript_exists? %>
 </body>
 </html>
