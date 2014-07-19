@@ -1,4 +1,79 @@
 /*
  *= require_tree .
+ *= require reset
  *= require_self
  */
+
+.center {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#main-counter {
+  margin: 20px 0;
+}
+
+#main-counter .controls {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#main-counter .time {
+  font-size: 100px;
+  text-align: center;
+  display: block;
+}
+
+#main-counter .timeout {
+  color: red;
+}
+
+.pomodoro-list-item {
+  border-bottom: 2px solid black;
+  overflow: hidden;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.pomodoro-list-item.edit-mode {
+  cursor: initial;
+}
+
+.pomodoro-list-item .controls {
+  float: right;
+}
+
+.pomodoro-list-item .task-name {
+  float: left;
+  width: 480px;
+}
+
+.current-pomodoro {
+  border: 2px dashed black;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.current-pomodoro .pomodoro-list-item {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.current-pomodoro .pomodoro-list-item .task-name {
+  width: 400px;
+}
+
+.tomato-form {
+  margin-top: 20px;
+}
+
+.tomato-form input[type=text] {
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  box-sizing: border-box;
+}
+
+.pause-pomodoro-list-item {
+  background: gray;
+}
