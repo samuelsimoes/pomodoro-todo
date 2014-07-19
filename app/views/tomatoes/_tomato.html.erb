@@ -1,7 +1,9 @@
-<div class="pomodoro-list-item">
+<div class="pomodoro-list-item"
+     ng-repeat="tomato in tomatoes"
+     ng-controller="TomatoController">
 
   <p class="task-name">
-    Descrição do pomodoro
+    {{ tomato.attributes.description }}
   </p>
 
   <form>
