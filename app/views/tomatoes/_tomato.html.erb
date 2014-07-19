@@ -2,12 +2,16 @@
      ng-repeat="tomato in tomatoes"
      ng-controller="TomatoController">
 
-  <p class="task-name">
+  <p class="task-name"
+     ng-hide="editMode"
+     ng-click="enterEditMode()">
     {{ tomato.attributes.description }}
   </p>
 
-  <form>
-    <input type="text" autofocus>
+  <form ng-submit="update()" ng-show="editMode">
+    <input type="text"
+           ng-model="tomato.attributes.description"
+           autofocus>
   </form>
 
   <div class="controls">
