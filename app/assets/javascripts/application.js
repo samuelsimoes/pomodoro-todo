@@ -1,11 +1,13 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui
 //= require angular
+//= require angular.sortable
 //= require model_collection
 //= require_tree ./filters
 
 angular.module("Pomodoro", []);
-angular.module("PomodoroApp", ["Pomodoro", "ModelCollection", "DurationFilter"]).config([
+angular.module("PomodoroApp", ["Pomodoro", "ModelCollection", "ui.sortable", "DurationFilter"]).config([
   "$httpProvider",
   function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-CSRF-Token"] =

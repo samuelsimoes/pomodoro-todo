@@ -10,5 +10,11 @@ angular.module("Pomodoro").controller("TomatoesController", [
     $rootScope.$on("new-tomato-saved", function (event, tomato) {
       tomatoes.add(tomato);
     });
+
+    $scope.sortableOptions = {
+      stop: function () {
+        tomatoes.computeOrder().persistCollection();
+      }
+    };
   }
 ]);
