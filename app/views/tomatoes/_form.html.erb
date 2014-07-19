@@ -1,4 +1,6 @@
-<form action="" class="tomato-form">
-  <input type="text" placeholder="Descrição do pomodoro">
-  <button>Salvar</button>
+<form action="" class="tomato-form" ng-controller="NewTomatoController">
+  <input type="text"
+         placeholder="Descrição do pomodoro"
+         ng-model="tomato.attributes.description">
+  <button ng-click="save()">Salvar</button>
 </form>
