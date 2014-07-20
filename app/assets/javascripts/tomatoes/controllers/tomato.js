@@ -23,5 +23,9 @@ angular.module("Pomodoro").controller("TomatoController", [
       $rootScope.$emit("counter:set-current-counter-entity", $scope.tomato);
       $rootScope.$emit("counter:start");
     };
+
+    $scope.remove = function () {
+      $scope.tomato.destroy();
+    };
   }
 ]);
