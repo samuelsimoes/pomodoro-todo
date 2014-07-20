@@ -17,7 +17,7 @@ angular.module("Pomodoro").controller("TomatoesController", [
       }
     };
 
-    $rootScope.$on("counter:set-current-counter-entity", function (evt, entity) {
+    $rootScope.$on("counter:start", function (evt, entity) {
       if (entity instanceof Tomato) {
         tomatoes.remove(entity);
       }

@@ -6,8 +6,7 @@ angular.module("Pomodoro").controller("BaseController", [
 
       var currentTomato = new Tomato($windowObject.currentRunningTomatoData);
 
-      $rootScope.$emit("counter:set-current-counter-entity", currentTomato);
-      $rootScope.$emit("counter:start");
+      $rootScope.$emit("counter:start", currentTomato);
     };
 
     $scope.$watch("$viewContentLoaded", defineCurrentTomato);

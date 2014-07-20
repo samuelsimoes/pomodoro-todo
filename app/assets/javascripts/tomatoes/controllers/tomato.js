@@ -20,8 +20,7 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     $scope.start = function () {
-      $rootScope.$emit("counter:set-current-counter-entity", $scope.tomato);
-      $rootScope.$emit("counter:start");
+      $rootScope.$emit("counter:start", $scope.tomato);
     };
 
     $scope.remove = function () {

@@ -1,6 +1,6 @@
 angular.module("Pomodoro").controller("CounterController", [
-  "$scope", "$rootScope", "$interval", "ShortBreak", "LongBreak",
-  function ($scope, $rootScope, $interval, ShortBreak, LongBreak) {
+  "$scope", "$rootScope", "$interval", "ShortBreak", "LongBreak", "$q",
+  function ($scope, $rootScope, $interval, ShortBreak, LongBreak, $q) {
     var interval;
 
     var updateCounter = function () {
@@ -31,25 +31,38 @@ angular.module("Pomodoro").controller("CounterController", [
       cleanCounter();
     };
 
-    var start = function () {
-      if (!$scope.currentCounterEntity.running()) {
-        $scope.currentCounterEntity.start().then(startUpdateInterval);
-      } else {
-        startUpdateInterval();
-      }
+    var stop = function () {
+      var stopPromise = $q.defer();
+
+      $scope.currentCounterEntity.stop().then(function () {
+        onStop();
+        stopPromise.resolve();
+      });
+
+      return stopPromise.promise;
     };
 
-    var stop = function () {
-      $scope.currentCounterEntity.stop().then(onStop);
+    var start = function (counterEntity) {
+      if ($scope.currentCounterEntity) {
+        // If start command is invoked with one running tomato the counter stop
+        // the current tomato and start the new tomato
+        stop().then(function () {
+          $scope.currentCounterEntity = counterEntity;
+          $scope.currentCounterEntity.start().then(startUpdateInterval);
+        });
+      } else {
+        $scope.currentCounterEntity = counterEntity;
+
+        if (counterEntity.running()) {
+          startUpdateInterval();
+        } else {
+          $scope.currentCounterEntity.start().then(startUpdateInterval);
+        }
+      }
     };
 
     var cancel = function () {
       $scope.currentCounterEntity.cancel().then(onCancelCounter);
-    };
-
-    var setCurrentEntity = function (entity) {
-      if ($scope.currentCounterEntity) { stop(); }
-      $scope.currentCounterEntity = entity;
     };
 
     $scope.stop = stop;
@@ -57,25 +70,21 @@ angular.module("Pomodoro").controller("CounterController", [
     $scope.cancel = cancel;
 
     $scope.shortBreak = function () {
-      setCurrentEntity(new ShortBreak());
-      start();
+      start(new ShortBreak());
     };
 
     $scope.longBreak = function () {
-      setCurrentEntity(new LongBreak());
-      start();
+      start(new LongBreak());
     };
 
     $scope.showControls = function () {
       return $scope.currentCounterEntity;
     };
 
-    $rootScope.$on("counter:start", start);
-
     $rootScope.$on("counter:stop", stop);
 
-    $rootScope.$on("counter:set-current-counter-entity", function (evt, entity) {
-      setCurrentEntity(entity);
+    $rootScope.$on("counter:start", function (evt, entity) {
+      start(entity);
     });
   }
 ]);
