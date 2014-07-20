@@ -1,6 +1,6 @@
 angular.module("Pomodoro").controller("CounterController", [
-  "$scope", "$rootScope", "$interval",
-  function ($scope, $rootScope, $interval) {
+  "$scope", "$rootScope", "$interval", "ShortBreak", "LongBreak",
+  function ($scope, $rootScope, $interval, ShortBreak, LongBreak) {
     var interval;
 
     var updateCounter = function () {
@@ -55,6 +55,16 @@ angular.module("Pomodoro").controller("CounterController", [
     $scope.stop = stop;
 
     $scope.cancel = cancel;
+
+    $scope.shortBreak = function () {
+      setCurrentEntity(new ShortBreak());
+      start();
+    };
+
+    $scope.longBreak = function () {
+      setCurrentEntity(new LongBreak());
+      start();
+    };
 
     $scope.showControls = function () {
       return $scope.currentCounterEntity;

@@ -1,21 +1,10 @@
 angular.module("Pomodoro").factory("Tomato", [
-  "ModelBase",
-  function (ModelBase) {
-    return ModelBase.extend({
+  "CounterEntity",
+  function (CounterEntity) {
+    return CounterEntity.extend({
       timeLengthInSeconds: 1500,
 
       urlRoot: "tomatoes",
-
-      runTimeInSeconds: function () {
-        var startTimeInMs = new Date(this.attributes.started_at).getTime(),
-            nowInMs = new Date().getTime();
-
-        return (nowInMs - startTimeInMs) / 1000;
-      },
-
-      leftTimeInSeconds: function () {
-        return (this.timeLengthInSeconds - this.runTimeInSeconds());
-      },
 
       start: function () {
         return this.save(null, {
