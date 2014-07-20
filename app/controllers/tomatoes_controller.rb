@@ -47,6 +47,11 @@ class TomatoesController < ApplicationController
 
   private
 
+  def current_running_tomato
+    @current_running_tomato ||= Tomato.current_running
+  end
+  helper_method :current_running_tomato
+
   def tomatoes_order_params
     @tomatoes_orders ||= params[:_json].inject({}) do |result, tomato|
       result[tomato[:id]] = tomato.extract!(:order).permit(:order)
