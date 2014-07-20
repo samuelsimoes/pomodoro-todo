@@ -3,7 +3,7 @@ class TomatoesController < ApplicationController
   before_action :set_tomato, except: [:index, :create, :update_collection_order]
 
   def index
-    @tomatoes = Tomato.all
+    @tomatoes = Tomato.without_started.all
     respond_with @tomatoes
   end
 
@@ -42,7 +42,7 @@ class TomatoesController < ApplicationController
       Tomato.update(tomatoes_order_params.keys, tomatoes_order_params.values)
     end
 
-    render json: Tomato.ordered.all
+    render json: Tomato.without_started.ordered.all
   end
 
   private

@@ -16,6 +16,10 @@ class Tomato < ActiveRecord::Base
     .first
   end
 
+  def self.without_started
+    where(started_at: nil)
+  end
+
   def start!
     raise OtherTomatoRunning if Tomato.current_running.present?
     update(started_at: Time.current)
