@@ -1,6 +1,6 @@
 angular.module("Pomodoro").controller("TomatoesController", [
-  "$scope", "$rootScope", "Tomatoes",
-  function ($scope, $rootScope, Tomatoes) {
+  "$scope", "$rootScope", "Tomatoes", "Tomato",
+  function ($scope, $rootScope, Tomatoes, Tomato) {
     var tomatoes = new Tomatoes();
 
     tomatoes.fetch();
@@ -16,5 +16,17 @@ angular.module("Pomodoro").controller("TomatoesController", [
         tomatoes.computeOrder().persistCollection();
       }
     };
+
+    $rootScope.$on("counter:set-current-counter-entity", function (evt, entity) {
+      if (entity instanceof Tomato) {
+        tomatoes.remove(entity);
+      }
+    });
+
+    $rootScope.$on("counter:canceled", function (evt, entity) {
+      if (entity instanceof Tomato) {
+        tomatoes.add(entity);
+      }
+    });
   }
 ]);

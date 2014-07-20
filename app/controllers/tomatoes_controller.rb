@@ -1,6 +1,6 @@
 class TomatoesController < ApplicationController
   respond_to :html, :json
-  before_action :set_tomato, only: [:show, :edit, :update, :destroy]
+  before_action :set_tomato, except: [:index, :create, :update_collection_order]
 
   def index
     @tomatoes = Tomato.all
@@ -20,6 +20,21 @@ class TomatoesController < ApplicationController
   def destroy
     @tomato.destroy
     respond_with @tomato
+  end
+
+  def start
+    @tomato.start!
+    respond_with @tomato, location: nil
+  end
+
+  def stop
+    @tomato.stop!
+    respond_with @tomato, location: nil
+  end
+
+  def cancel
+    @tomato.cancel!
+    respond_with @tomato, location: nil
   end
 
   def update_collection_order
