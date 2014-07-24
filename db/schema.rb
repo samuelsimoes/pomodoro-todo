@@ -11,13 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618015359) do
-  create_table "tomatoes", force: true do |t|
-    t.integer  "order",       null: false
-    t.string   "description", null: false
+ActiveRecord::Schema.define(version: 20140724004821) do
+
+  create_table "pomodoro_lists", force: true do |t|
+    t.string   "title",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pomodoro_tracks", force: true do |t|
+    t.integer  "day_order"
+    t.string   "description"
+    t.integer  "distraction_level"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tomatoes", force: true do |t|
+    t.integer  "order",            null: false
+    t.string   "description",      null: false
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pomodoro_list_id"
+  end
+
 end
