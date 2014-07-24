@@ -5,6 +5,7 @@
 //= require angular.sortable
 //= require angular.ui-router
 //= require model_collection
+//= require angular-rails-templates
 //= require_tree ./filters
 
 angular.module("Pomodoro", []);
@@ -13,6 +14,7 @@ angular.module("PomodoroApp", [
   "ModelCollection",
   "ui.sortable",
   "DurationFilter",
+  "templates",
   "ui.router"
 ]).config([
   "$httpProvider",
