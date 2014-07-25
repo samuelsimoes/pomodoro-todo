@@ -1,0 +1,7 @@
+<div ng-controller="PomodoroListsController">
+  <div ng-repeat="pomodoroList in pomodoroLists" ui-sref-active="active">
+    <a ui-sref="pomodoro_lists.show({ pomodoroListId: pomodoroList.attributes.id })">
+      {{ pomodoroList.attributes.title }}
+    </a>
+  </div>
+</div>
