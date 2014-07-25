@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( tomatoes.js )
+Rails.application.config.assets.precompile += %w( pomodoro_lists.js )

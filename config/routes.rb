@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'tomatoes#index'
+  root 'pomodoro_lists#index'
+
   resources :tomatoes do
     post :update_collection_order, on: :collection
 
@@ -9,4 +10,6 @@ Rails.application.routes.draw do
       put :cancel
     end
   end
+
+  resources :pomodoro_lists
 end

@@ -2,5 +2,5 @@
             ng-model="tomatoes"
             ui-sortable="sortableOptions"
             ng-controller="TomatoesController">
-  <%= render 'tomato' %>
+  <div ng-include src="'tomatoes/templates/_tomato.html'"></div>
 </div>
