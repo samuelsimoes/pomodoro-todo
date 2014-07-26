@@ -77,3 +77,7 @@
 .pause-pomodoro-list-item {
   background: gray;
 }
+
+.pomodoro-lists-selector .active {
+  font-weight: bold;
+}
