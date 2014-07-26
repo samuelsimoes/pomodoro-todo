@@ -18,6 +18,7 @@ angular.module("Pomodoro").controller("CounterController", [
     };
 
     var startUpdateInterval = function () {
+      updateCounter();
       interval = $interval(updateCounter, 1000);
     };
 
