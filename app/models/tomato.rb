@@ -17,7 +17,7 @@ class Tomato < ActiveRecord::Base
     .where(finished_at: nil)
   end
 
-  def self.without_started
+  def self.unstarted
     where(started_at: nil)
   end
 

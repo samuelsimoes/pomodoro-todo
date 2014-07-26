@@ -4,7 +4,7 @@ angular.module("Pomodoro").controller("TomatoesController", [
     var tomatoes =
       new Tomatoes([], { pomodoroListId: $scope.stateParams.pomodoroListId });
 
-    tomatoes.fetch();
+    tomatoes.fetchUnstarted();
 
     $scope.tomatoes = tomatoes.models;
 

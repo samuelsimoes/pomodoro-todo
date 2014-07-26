@@ -46,9 +46,14 @@ angular.module("Pomodoro").factory("Tomatoes", [
         return this;
       },
 
+      fetchUnstarted: function () {
+        return this.fetch({ params: { unstarted: true } });
+      },
+
       persistCollection: function () {
         return this.sync({
-          url: (this.url() + "/update_collection_order")
+          url: (this.url() + "/update_collection_order"),
+          params: { unstarted: true }
         });
       }
     });

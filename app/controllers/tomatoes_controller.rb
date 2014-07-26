@@ -1,8 +1,11 @@
 class TomatoesController < ApplicationController
   respond_to :html, :json
 
+  has_scope :unstarted, type: :boolean
+
   def index
-    respond_with pomodoro_list.tomatoes.without_started.all
+    tomatoes = pomodoro_list.tomatoes.ordered
+    respond_with apply_scopes(tomatoes)
   end
 
   def create
@@ -40,7 +43,7 @@ class TomatoesController < ApplicationController
       Tomato.update(tomatoes_order_params.keys, tomatoes_order_params.values)
     end
 
-    render json: pomodoro_list.tomatoes.without_started.ordered.all
+    render json: apply_scopes(pomodoro_list.tomatoes.ordered)
   end
 
   private
