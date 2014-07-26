@@ -1,5 +1,7 @@
 class AddPomodoroListIdInTomatoes < ActiveRecord::Migration
   def change
-    add_column :tomatoes, :pomodoro_list_id, :integer
+    change_table :tomatoes do |t|
+      t.integer :pomodoro_list_id, index: true, null: false
+    end
   end
 end

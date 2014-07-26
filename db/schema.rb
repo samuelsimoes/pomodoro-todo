@@ -13,18 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20140724004821) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "pomodoro_lists", force: true do |t|
     t.string   "title",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pomodoro_tracks", force: true do |t|
-    t.integer  "day_order"
-    t.string   "description"
-    t.integer  "distraction_level"
-    t.datetime "started_at"
-    t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,7 +29,9 @@ ActiveRecord::Schema.define(version: 20140724004821) do
     t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pomodoro_list_id"
+    t.integer  "pomodoro_list_id", null: false
+    t.index ["pomodoro_list_id"], :name => "index_tomatoes_on_pomodoro_list_id"
+    t.foreign_key ["pomodoro_list_id"], "pomodoro_lists", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_tomatoes_pomodoro_list_id"
   end
 
 end
