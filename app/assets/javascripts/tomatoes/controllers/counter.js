@@ -86,5 +86,7 @@ angular.module("Pomodoro").controller("CounterController", [
     $scope.$on("counter:start", function (evt, entity) {
       start(entity);
     });
+
+    $scope.$on("$destroy", cleanCounter);
   }
 ]);
