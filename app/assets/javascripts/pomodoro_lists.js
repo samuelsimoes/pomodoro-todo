@@ -2,8 +2,10 @@
 //= require_tree ./tomatoes
 
 angular.module("PomodoroApp").config([
-  "$stateProvider",
-  function ($stateProvider) {
+  "$stateProvider", "$urlRouterProvider",
+  function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/pomodoro_lists");
+
     $stateProvider.
       state("pomodoro_lists", {
         url: "/pomodoro_lists",
