@@ -6,7 +6,10 @@ gem 'pg', '0.17.1'
 gem 'schema_plus', '1.5.3'
 
 gem 'rails', '4.1.4'
+
 gem 'jquery-rails'
-gem 'responders', '1.0.0'
+gem 'uglifier', '2.5.3'
 gem 'angular-rails-templates', '0.1.3'
+
+gem 'responders', '1.0.0'
 gem 'has_scope', '0.5.1'

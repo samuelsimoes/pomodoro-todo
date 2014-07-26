@@ -34,6 +34,7 @@ GEM
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     erubis (2.7.0)
+    execjs (2.2.1)
     has_scope (0.5.1)
     hike (1.2.3)
     i18n (0.6.11)
@@ -90,6 +91,9 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    uglifier (2.5.3)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     valuable (0.9.8)
 
 PLATFORMS
@@ -103,3 +107,4 @@ DEPENDENCIES
   rails (= 4.1.4)
   responders (= 1.0.0)
   schema_plus (= 1.5.3)
+  uglifier (= 2.5.3)
