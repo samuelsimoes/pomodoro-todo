@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'pomodoro_lists#index'
 
   resources :pomodoro_lists do
+    member do
+      get :running_pomodoro
+    end
+
     resources :tomatoes do
       post :update_collection_order, on: :collection
 

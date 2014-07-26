@@ -11,7 +11,20 @@ angular.module("PomodoroApp").config([
       }).
       state("pomodoro_lists.show", {
         url: "/:pomodoroListId",
-        templateUrl: "tomatoes/templates/base.html"
+        templateUrl: "tomatoes/templates/base.html",
+        controller: [
+          "$scope", "$rootScope", "$stateParams", "PomodoroList",
+          function ($scope, $rootScope, $stateParams, PomodoroList) {
+            $scope.stateParams = $stateParams;
+
+            $scope.pomodoroList = new PomodoroList({ id: $stateParams.pomodoroListId });
+
+            // loads the actual list running pomodoro
+            $scope.pomodoroList.loadRunningPomodoro().then(function (tomato) {
+              $rootScope.$broadcast("counter:start", tomato);
+            });
+          }
+        ]
       });
   }
 ]);
