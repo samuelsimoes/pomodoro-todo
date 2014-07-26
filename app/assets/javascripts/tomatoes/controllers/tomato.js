@@ -20,7 +20,7 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     $scope.start = function () {
-      $rootScope.$emit("counter:start", $scope.tomato);
+      $rootScope.$broadcast("counter:start", $scope.tomato);
     };
 
     $scope.remove = function () {

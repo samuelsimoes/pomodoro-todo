@@ -22,12 +22,12 @@ angular.module("Pomodoro").controller("CounterController", [
     };
 
     var onCancelCounter = function () {
-      $rootScope.$emit("counter:canceled", $scope.currentCounterEntity);
+      $rootScope.$broadcast("counter:canceled", $scope.currentCounterEntity);
       cleanCounter();
     };
 
     var onStop = function () {
-      $rootScope.$emit("counter:stopped", $scope.currentCounterEntity);
+      $rootScope.$broadcast("counter:stopped", $scope.currentCounterEntity);
       cleanCounter();
     };
 
@@ -81,9 +81,9 @@ angular.module("Pomodoro").controller("CounterController", [
       return $scope.currentCounterEntity;
     };
 
-    $rootScope.$on("counter:stop", stop);
+    $scope.$on("counter:stop", stop);
 
-    $rootScope.$on("counter:start", function (evt, entity) {
+    $scope.$on("counter:start", function (evt, entity) {
       start(entity);
     });
   }

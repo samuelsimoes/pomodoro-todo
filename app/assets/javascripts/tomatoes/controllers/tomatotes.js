@@ -1,6 +1,6 @@
 angular.module("Pomodoro").controller("TomatoesController", [
-  "$scope", "$rootScope", "Tomatoes", "Tomato",
-  function ($scope, $rootScope, Tomatoes, Tomato) {
+  "$scope", "Tomatoes", "Tomato",
+  function ($scope, Tomatoes, Tomato) {
     var tomatoes =
       new Tomatoes([], { pomodoroListId: $scope.stateParams.pomodoroListId });
 
@@ -8,7 +8,7 @@ angular.module("Pomodoro").controller("TomatoesController", [
 
     $scope.tomatoes = tomatoes.models;
 
-    $rootScope.$on("new-tomato-saved", function (event, tomato) {
+    $scope.$on("new-tomato-saved", function (event, tomato) {
       tomatoes.add(tomato);
     });
 
@@ -19,13 +19,13 @@ angular.module("Pomodoro").controller("TomatoesController", [
       }
     };
 
-    $rootScope.$on("counter:start", function (evt, entity) {
+    $scope.$on("counter:start", function (evt, entity) {
       if (entity instanceof Tomato) {
         tomatoes.remove(entity);
       }
     });
 
-    $rootScope.$on("counter:canceled", function (evt, entity) {
+    $scope.$on("counter:canceled", function (evt, entity) {
       if (entity instanceof Tomato) {
         tomatoes.add(entity);
       }

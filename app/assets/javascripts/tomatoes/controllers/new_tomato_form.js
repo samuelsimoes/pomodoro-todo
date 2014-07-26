@@ -10,7 +10,7 @@ angular.module("Pomodoro").controller("NewTomatoController", [
       $scope.submitPromise = $scope.tomato.save();
 
       $scope.submitPromise.success(function () {
-        $rootScope.$emit("new-tomato-saved", $scope.tomato);
+        $rootScope.$broadcast("new-tomato-saved", $scope.tomato);
         $scope.errors = {};
         buildNewModel();
       });
