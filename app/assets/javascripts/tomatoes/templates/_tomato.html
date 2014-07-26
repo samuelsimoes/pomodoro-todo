@@ -1,26 +1,21 @@
-<div class="pomodoro-list-item"
-     ng-repeat="tomato in tomatoes"
-     ng-controller="TomatoController">
+<p class="task-name"
+   ng-hide="editMode"
+   ng-click="enterEditMode()">
+  {{ tomato.attributes.description }}
+</p>
 
-  <p class="task-name"
-     ng-hide="editMode"
-     ng-click="enterEditMode()">
-    {{ tomato.attributes.description }}
-  </p>
+<form ng-submit="update()" ng-show="editMode">
+  <input type="text"
+         ng-model="tomato.attributes.description"
+         autofocus>
+</form>
 
-  <form ng-submit="update()" ng-show="editMode">
-    <input type="text"
-           ng-model="tomato.attributes.description"
-           autofocus>
-  </form>
+<div class="controls">
+  <button ng-click="start()" ng-show="showStartButton()">
+    Iniciar
+  </button>
 
-  <div class="controls">
-    <button ng-click="start()" ng-show="showStartButton()">
-      Iniciar
-    </button>
-
-    <button ng-click="remove()">
-      Excluir
-    </button>
-  </div>
+  <button ng-click="remove()">
+    Excluir
+  </button>
 </div>

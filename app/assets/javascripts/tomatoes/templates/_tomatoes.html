@@ -2,5 +2,9 @@
             ng-model="tomatoes"
             ui-sortable="sortableOptions"
             ng-controller="TomatoesController">
-  <div ng-include src="'tomatoes/templates/_tomato.html'"></div>
+  <div ng-include
+       src="'tomatoes/templates/_tomato.html'"
+       class="pomodoro-list-item"
+       ng-repeat="tomato in tomatoes"
+       ng-controller="TomatoController"></div>
 </div>

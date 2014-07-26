@@ -2,7 +2,9 @@ angular.module("Pomodoro").factory("Tomatoes", [
   "CollectionBase", "Tomato",
   function (CollectionBase, Tomato) {
     return CollectionBase.extend({
-      url: "tomatoes",
+      url: function () {
+        return "/pomodoro_lists/" + this.options.pomodoroListId + "/tomatoes";
+      },
 
       model: Tomato,
 
@@ -46,7 +48,7 @@ angular.module("Pomodoro").factory("Tomatoes", [
 
       persistCollection: function () {
         return this.sync({
-          url: (this.url + "/update_collection_order")
+          url: (this.url() + "/update_collection_order")
         });
       }
     });

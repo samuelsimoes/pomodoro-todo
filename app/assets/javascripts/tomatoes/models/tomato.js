@@ -4,7 +4,9 @@ angular.module("Pomodoro").factory("Tomato", [
     return CounterEntity.extend({
       timeLengthInSeconds: 1500,
 
-      urlRoot: "tomatoes",
+      urlRoot: function () {
+        return "pomodoro_lists/" + this.attributes.pomodoro_list_id + "/tomatoes";
+      },
 
       start: function () {
         return this.save(null, {

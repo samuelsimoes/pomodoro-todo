@@ -1,7 +1,8 @@
 angular.module("Pomodoro").controller("TomatoesController", [
   "$scope", "$rootScope", "Tomatoes", "Tomato",
   function ($scope, $rootScope, Tomatoes, Tomato) {
-    var tomatoes = new Tomatoes();
+    var tomatoes =
+      new Tomatoes([], { pomodoroListId: $scope.stateParams.pomodoroListId });
 
     tomatoes.fetch();
 

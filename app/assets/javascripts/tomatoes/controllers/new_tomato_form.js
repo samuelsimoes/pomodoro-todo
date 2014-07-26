@@ -2,7 +2,8 @@ angular.module("Pomodoro").controller("NewTomatoController", [
   "$scope", "$rootScope", "Tomato",
   function ($scope, $rootScope, Tomato) {
     var buildNewModel = function() {
-      $scope.tomato = new Tomato();
+      $scope.tomato =
+        new Tomato({ pomodoro_list_id: $scope.stateParams.pomodoroListId });
     };
 
     $scope.save = function () {

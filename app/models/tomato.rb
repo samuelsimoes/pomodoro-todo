@@ -1,8 +1,10 @@
 class Tomato < ActiveRecord::Base
   before_create :define_order
 
+  belongs_to :pomodoro_list
+
   def define_order
-    last_tomato = Tomato.ordered.last
+    last_tomato = pomodoro_list.tomatoes.ordered.last
     self.order = last_tomato.blank? ? 0 : (last_tomato.order + 1)
   end
 
@@ -10,10 +12,9 @@ class Tomato < ActiveRecord::Base
     order(arel_table[:order].asc)
   end
 
-  def self.current_running
+  def self.running
     where.not(started_at: nil)
     .where(finished_at: nil)
-    .first
   end
 
   def self.without_started
@@ -21,7 +22,7 @@ class Tomato < ActiveRecord::Base
   end
 
   def start!
-    raise OtherTomatoRunning if Tomato.current_running.present?
+    raise OtherTomatoRunning if pomodoro_list.running_pomodoro.present?
     update(started_at: Time.current)
   end
 
