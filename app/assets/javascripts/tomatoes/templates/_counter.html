@@ -1,27 +1,27 @@
-<div id="main-counter" ng-controller="CounterController">
-  <span class="time" ng-class="{ 'timeout': isTimeout }">
-    {{ runTime | duration }}
+<div id="main-counter" ng-controller="CounterController as counter">
+  <span class="time" ng-class="{ 'timeout': counter.isTimeout }">
+    {{ counter.runTime | duration }}
   </span>
 
-  <div class="controls" ng-show="showControls()">
-    <button ng-click="stop()">
+  <div class="controls" ng-show="counter.showControls()">
+    <button ng-click="counter.stop()">
       Parar
     </button>
 
-    <button ng-click="cancel()">
+    <button ng-click="counter.cancel()">
       Cancelar
     </button>
   </div>
 
-  <button ng-click="shortBreak()">
+  <button ng-click="counter.shortBreak()">
     Pausa de 5 minutos
   </button>
 
-  <button ng-click="longBreak()">
+  <button ng-click="counter.longBreak()">
     Pausa de 25 minutos
   </button>
 
   <div class="current-pomodoro">
-    {{ currentCounterEntity.attributes.description }}
+    {{ counter.currentCounterEntity.attributes.description }}
   </div>
 </div>

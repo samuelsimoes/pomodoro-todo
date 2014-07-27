@@ -1,93 +1,88 @@
 angular.module("Pomodoro").controller("CounterController", [
   "$scope", "$rootScope", "$interval", "ShortBreak", "LongBreak", "$q",
   function ($scope, $rootScope, $interval, ShortBreak, LongBreak, $q) {
-    var interval;
+    var that = this;
 
-    var updateCounter = function () {
-      var leftTime = $scope.currentCounterEntity.leftTimeInSeconds();
+    $scope.$on("counter:start", function (evt, entity) {
+      that.start(entity);
+    });
 
-      $scope.isTimeout = (leftTime < 0);
-      $scope.runTime = (leftTime < 0) ? (leftTime * -1) : leftTime;
+    $scope.$on("$destroy", this.cleanCounter);
+
+    this.start = function (counterEntity) {
+      if (this.currentCounterEntity) {
+        this.stop().then(function () {
+          that.startNewCounterEntity(counterEntity);
+        });
+      } else {
+        this.startNewCounterEntity(counterEntity);
+      }
     };
 
-    var cleanCounter = function () {
-      $interval.cancel(interval);
-      $scope.runTime = 0;
-      $scope.isTimeout = false;
-      delete $scope.currentCounterEntity;
+    this.startNewCounterEntity = function (counterEntity) {
+      this.currentCounterEntity = counterEntity;
+
+      if (counterEntity.running()) {
+        this.startUpdateInterval();
+      } else {
+        this.currentCounterEntity.start().then(angular.bind(this, this.startUpdateInterval));
+      }
     };
 
-    var startUpdateInterval = function () {
-      updateCounter();
-      interval = $interval(updateCounter, 1000);
-    };
-
-    var onCancelCounter = function () {
-      $rootScope.$broadcast("counter:canceled", $scope.currentCounterEntity);
-      cleanCounter();
-    };
-
-    var onStop = function () {
-      $rootScope.$broadcast("counter:stopped", $scope.currentCounterEntity);
-      cleanCounter();
-    };
-
-    var stop = function () {
+    this.stop = function () {
       var stopPromise = $q.defer();
 
-      $scope.currentCounterEntity.stop().then(function () {
-        onStop();
+      this.currentCounterEntity.stop().then(function () {
+        that.cleanCounter();
         stopPromise.resolve();
       });
 
       return stopPromise.promise;
     };
 
-    var start = function (counterEntity) {
-      if ($scope.currentCounterEntity) {
-        // If start command is invoked with one running tomato the counter stop
-        // the current tomato and start the new tomato
-        stop().then(function () {
-          $scope.currentCounterEntity = counterEntity;
-          $scope.currentCounterEntity.start().then(startUpdateInterval);
-        });
-      } else {
-        $scope.currentCounterEntity = counterEntity;
+    this.updateCounter = function () {
+      var state = { isTimeout: false, runTime: 0 };
 
-        if (counterEntity.running()) {
-          startUpdateInterval();
-        } else {
-          $scope.currentCounterEntity.start().then(startUpdateInterval);
-        }
+      if (this.currentCounterEntity) {
+        state = {
+          isTimeout: this.currentCounterEntity.isTimeout(),
+          runTime: this.currentCounterEntity.runTime()
+        };
       }
+
+      angular.extend(this, state);
     };
 
-    var cancel = function () {
-      $scope.currentCounterEntity.cancel().then(onCancelCounter);
+    this.cleanCounter = function () {
+      $interval.cancel(this.interval);
+      delete this.currentCounterEntity;
+      this.updateCounter();
     };
 
-    $scope.stop = stop;
-
-    $scope.cancel = cancel;
-
-    $scope.shortBreak = function () {
-      start(new ShortBreak());
+    this.startUpdateInterval = function () {
+      this.updateCounter();
+      this.interval = $interval(angular.bind(this, this.updateCounter), 1000);
     };
 
-    $scope.longBreak = function () {
-      start(new LongBreak());
+    this.onCancelCounter = function () {
+      $rootScope.$broadcast("counter:canceled", this.currentCounterEntity);
+      this.cleanCounter();
     };
 
-    $scope.showControls = function () {
-      return $scope.currentCounterEntity;
+    this.cancel = function () {
+      this.currentCounterEntity.cancel().then(angular.bind(this, this.onCancelCounter));
     };
 
-    $scope.$on("counter:stop", stop);
+    this.shortBreak = function () {
+      this.start(new ShortBreak());
+    };
 
-    $scope.$on("counter:start", function (evt, entity) {
-      start(entity);
-    });
+    this.longBreak = function () {
+      this.start(new LongBreak());
+    };
 
-    $scope.$on("$destroy", cleanCounter);
+    this.showControls = function () {
+      return this.currentCounterEntity;
+    };
   }
 ]);

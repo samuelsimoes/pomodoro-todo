@@ -16,6 +16,14 @@ angular.module("Pomodoro").factory("CounterEntity", [
 
       leftTimeInSeconds: function () {
         return (this.timeLengthInSeconds - this.runTimeInSeconds());
+      },
+
+      isTimeout: function () {
+        return (this.leftTimeInSeconds() < 0);
+      },
+
+      runTime: function () {
+        return (this.leftTimeInSeconds() < 0) ? (this.leftTimeInSeconds() * -1) : this.leftTimeInSeconds();
       }
     });
   }
