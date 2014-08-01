@@ -1,5 +1,13 @@
-<div ng-include src="'pomodoro_lists/templates/_pomodoro_lists.html'"></div>
+<div class="sidebar">
+  <h1 class="main-call">
+    Pomodoro App
+  </h1>
 
-<div ng-include src="'pomodoro_lists/templates/_new_pomodoro_list.html'"></div>
+  <div ng-include
+       src="'pomodoro_lists/templates/_pomodoro_lists.html'"
+       ng-controller="PomodoroListsController"
+       class="pomodoro-lists">
+  </div>
+</div>
 
 <div class="content-container" ui-view></div>

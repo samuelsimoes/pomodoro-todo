@@ -4,80 +4,170 @@
  *= require_self
  */
 
-.center {
-  width: 600px;
-  margin: 0 auto;
+body {
+  overflow: hidden;
+  font-family: Helvetica, Arial, 'san-serif';
 }
 
-#main-counter {
-  margin: 20px 0;
+.sidebar {
+  background: #2b2f3a;
+  width: 25%;
+  position: absolute;
+  height: 100%;
 }
 
-#main-counter .controls {
+.main-call {
+  background: #fff;
+  color: #4985c9;
+  font-weight: lighter;
+  font-size: 12px;
+  line-height: 60px;
+  text-transform: uppercase;
   text-align: center;
-  margin-bottom: 20px;
+  letter-spacing: 3px;
 }
 
-#main-counter .time {
-  font-size: 100px;
-  text-align: center;
+.pomodoro-lists {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  padding-top: 20px;
+  bottom: 0;
+  overflow: auto;
+}
+
+.pomodoro-list-link {
   display: block;
+  background: #3b4256;
+  padding: 16px;
+  font-weight: lighter;
+  font-size: 14px;
+  text-shadow: 0px -1px 0px #1d253b;
+  margin: 0 20px 15px 0;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 2px 0 #262b39;
 }
 
-#main-counter .timeout {
-  color: red;
+.pomodoro-list-link.active {
+  background: #505a73;
+  text-shadow: 0px -1px 0px #3d465e;
+}
+
+.content-container {
+  width: 75%;
+  position: absolute;
+  left: 25%;
+  height: 100%;
+}
+
+.tomato-form {
+  padding: 0 10px 10px 10px;
+  border-bottom: 2px solid #E4E4E4;
+}
+
+.tomatoes-container {
+  position: absolute;
+  width: 100%;
+  top: 328px;
+  bottom: 0;
+  overflow: auto;
 }
 
 .pomodoro-list-item {
-  border-bottom: 2px solid black;
+  background: #f6f6f6;
+  margin-bottom: 1px;
+  padding: 10px 15px;
+  border-bottom: 2px solid #E6E6E6;
+  cursor: pointer;
   overflow: hidden;
-  padding: 20px 0;
+}
+
+.pomodoro-list-item .control-button {
+  float: right;
+  background: none;
+  border: none;
+  text-shadow: 0px 2px 0px #fff;
+  color: #ACAAAA;
+  font-size: 17px;
   cursor: pointer;
 }
 
-.pomodoro-list-item.edit-mode {
-  cursor: initial;
+.pomodoro-list-item .control-button:hover {
+  color: #878080;
 }
 
-.pomodoro-list-item .controls {
-  float: right;
+.pomodoro-list-item .button-text {
+  display: none;
 }
 
 .pomodoro-list-item .task-name {
   float: left;
-  width: 480px;
+  text-shadow: 0px 1px 0px #fff;
+  color: #968D8D;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: lighter;
 }
 
-.current-pomodoro {
-  border: 2px dashed black;
-  padding: 20px;
-  margin-bottom: 20px;
+.main-counter .current-pomodoro {
+  background: #3577c3;
+  color: #fff;
+  line-height: 60px;
+  height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
 }
 
-.current-pomodoro .pomodoro-list-item {
-  border: 1px solid black;
+.main-counter .time {
+  font-size: 120px;
+  background: #4985c9;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 900;
+  font-family: Lato;
+}
+
+.main-counter .time.timeout {
+  background: #ED3E3E;
+}
+
+.counter {
+  position: relative;
+  text-align: center;
+}
+
+.counter-controls {
   padding: 10px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
 }
 
-.current-pomodoro .pomodoro-list-item .task-name {
-  width: 400px;
+.counter-controls .counting-controls {
+  display: inline-block;
 }
 
-.tomato-form {
-  margin-top: 20px;
-}
-
-.tomato-form input[type=text] {
-  width: 100%;
-  padding: 13px;
-  font-size: 17px;
+.form input[type=text] {
+  border: none;
+  font-size: 15px;
+  padding: 10px;
+  background: #F7F7F7;
+  border-top: 2px solid #E9E9E9;
   box-sizing: border-box;
+  width: 100%;
 }
 
-.pause-pomodoro-list-item {
-  background: gray;
-}
-
-.pomodoro-lists-selector .active {
-  font-weight: bold;
+.button {
+  background: #3577c3;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 0 #2C6CB7;
 }
