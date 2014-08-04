@@ -61,7 +61,7 @@ body {
   height: 100%;
 }
 
-.tomato-form {
+.new-tomato-form {
   padding: 0 10px 10px 10px;
   border-bottom: 2px solid #E4E4E4;
 }
@@ -75,12 +75,29 @@ body {
 }
 
 .pomodoro-list-item {
+  position: relative;
   background: #f6f6f6;
   margin-bottom: 1px;
   padding: 10px 15px;
   border-bottom: 2px solid #E6E6E6;
   cursor: pointer;
   overflow: hidden;
+}
+
+.pomodoro-list-item .tomato-form {
+  position: absolute;
+  right: 85px;
+  left: 12px;
+}
+
+.pomodoro-list-item .tomato-form input[type=text] {
+  border-top: 1px solid #E9E9E9;
+  font-family: Helvetica, 'sans-serif';
+  background: #fff;
+  padding: 0 5px;
+  font-size: 14px;
+  font-weight: lighter;
+  line-height: 25px;
 }
 
 .pomodoro-list-item .control-button {
@@ -108,6 +125,9 @@ body {
   line-height: 30px;
   font-size: 14px;
   font-weight: lighter;
+  position: absolute;
+  right: 80px;
+  left: 17px;
 }
 
 .main-counter .current-pomodoro {

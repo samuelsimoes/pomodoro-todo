@@ -4,7 +4,7 @@
   {{ tomato.attributes.description }}
 </p>
 
-<form ng-submit="update()" ng-show="editMode">
+<form ng-submit="update()" ng-show="editMode" class="form tomato-form">
   <input type="text"
          ng-model="tomato.attributes.description"
          autofocus>
