@@ -12,6 +12,11 @@ class Tomato < ActiveRecord::Base
     order(arel_table[:order].asc)
   end
 
+  def self.finished
+    where.not(started_at: nil)
+    .where.not(finished_at: nil)
+  end
+
   def self.running
     where.not(started_at: nil)
     .where(finished_at: nil)
