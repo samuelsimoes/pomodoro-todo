@@ -11,6 +11,12 @@ class PomodoroListsController < ApplicationController
     respond_with @pomodoro_list
   end
 
+  def destroy
+    pomodoro_list = PomodoroList.find(params[:id])
+    pomodoro_list.destroy
+    respond_with pomodoro_list
+  end
+
   def running_pomodoro
     pomodoro_list = PomodoroList.find(params[:id])
     running_pomodoro = pomodoro_list.running_pomodoro

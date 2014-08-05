@@ -37,16 +37,40 @@ body {
 }
 
 .pomodoro-list-link {
+  position: relative;
   display: block;
   background: #3b4256;
   padding: 16px;
   font-weight: lighter;
-  font-size: 14px;
-  text-shadow: 0px -1px 0px #1d253b;
   margin: 0 20px 15px 0;
+  box-shadow: 0 2px 0 #262b39;
+  text-shadow: 0px -1px 0px #1d253b;
+}
+
+.pomodoro-list-link a {
+  font-size: 14px;
   color: #fff;
   text-decoration: none;
-  box-shadow: 0 2px 0 #262b39;
+}
+
+.pomodoro-list-link .controls {
+  display: none;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
+
+.pomodoro-list-link:hover .controls {
+  display: block;
+}
+
+.pomodoro-list-link button {
+  text-shadow: 0px -1px 0px #1d253b;
+  padding: 0;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 .pomodoro-list-link.active {

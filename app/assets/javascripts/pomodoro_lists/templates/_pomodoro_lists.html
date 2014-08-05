@@ -1,9 +1,17 @@
-<a ng-repeat="pomodoroList in pomodoroLists"
-   ui-sref="pomodoro_lists.show({ pomodoroListId: pomodoroList.attributes.id })"
-   ui-sref-active="active"
-   class="pomodoro-list-link">
-  {{ pomodoroList.attributes.title }}
-</a>
+<div class="pomodoro-list-link"
+     ng-controller="PomodoroListController as list"
+     ng-repeat="pomodoroList in pomodoroLists"
+     ui-sref-active="active">
+  <a ui-sref="pomodoro_lists.show({ pomodoroListId: pomodoroList.attributes.id })">
+    {{ pomodoroList.attributes.title }}
+  </a>
+
+  <div class="controls">
+    <button ng-click="list.destroy()">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+</div>
 
 <a href="#">
   <i></i>
