@@ -1,0 +1,205 @@
+body
+  overflow: hidden
+  font-family: Helvetica, Arial, 'san-serif'
+
+.sidebar
+  background: #2b2f3a
+  width: 25%
+  position: absolute
+  height: 100%
+
+.form input[type=text]
+  border: none
+  font-size: 15px
+  padding: 10px
+  background: #F7F7F7
+  border-top: 2px solid #E9E9E9
+  box-sizing: border-box
+  width: 100%
+
+.main-call
+  background: #fff
+  color: #4985c9
+  font-weight: lighter
+  font-size: 12px
+  line-height: 60px
+  text-transform: uppercase
+  text-align: center
+  letter-spacing: 3px
+
+.pomodoro-lists
+  width: 100%
+  position: absolute
+  top: 60px
+  padding-top: 20px
+  bottom: 0
+  overflow: auto
+
+.pomodoro-list-form
+  display: none
+  position: absolute
+  top: 9px
+  left: 6px
+  right: 9px
+  input[type=text]
+    position: absolute
+    height: 32px
+    font-size: 14px
+    font-family: Helvetica, 'sans-serif'
+    font-weight: lighter
+    background: #464E69
+    color: #fff
+    border-top: 1px solid #343B54
+    &::-webkit-input-placeholder
+      color: #5f6a90
+
+.pomodoro-list-link
+  position: relative
+  display: block
+  background: #3b4256
+  padding: 0 16px
+  font-weight: lighter
+  margin: 0 20px 15px 0
+  box-shadow: 0 2px 0 #262b39
+  text-shadow: 0px -1px 0px #1d253b
+  a
+    width: 100%
+    display: block
+    line-height: 50px
+    height: 50px
+    font-size: 14px
+    color: #fff
+    text-decoration: none
+  .controls
+    display: none
+    position: absolute
+    right: 14px
+    top: 14px
+  &:hover .controls
+    display: block
+  &.edit-mode
+    .controls
+      display: none
+    .pomodoro-list-form
+      display: block
+  button
+    text-shadow: 0px -1px 0px #1d253b
+    padding: 0
+    background: none
+    color: #fff
+    border: none
+    cursor: pointer
+  &.active
+    background: #505a73
+    text-shadow: 0px -1px 0px #3d465e
+
+.new-list-btn
+  background: none
+  border: none
+  color: #4E6386
+  cursor: pointer
+  font-size: 15px
+  margin-left: 10px
+
+.content-container
+  width: 75%
+  position: absolute
+  left: 25%
+  height: 100%
+
+.new-tomato-form
+  padding: 0 10px 10px 10px
+  border-bottom: 2px solid #E4E4E4
+
+.tomatoes-container
+  position: absolute
+  width: 100%
+  top: 328px
+  bottom: 0
+  overflow: auto
+
+.pomodoro-list-item
+  position: relative
+  background: #f6f6f6
+  margin-bottom: 1px
+  padding: 10px 15px
+  border-bottom: 2px solid #E6E6E6
+  cursor: pointer
+  overflow: hidden
+  .tomato-form
+    position: absolute
+    right: 85px
+    left: 12px
+    input[type=text]
+      border-top: 1px solid #E9E9E9
+      font-family: Helvetica, 'sans-serif'
+      background: #fff
+      padding: 0 5px
+      font-size: 14px
+      font-weight: lighter
+      line-height: 25px
+  .control-button
+    float: right
+    background: none
+    border: none
+    text-shadow: 0px 2px 0px #fff
+    color: #ACAAAA
+    font-size: 17px
+    cursor: pointer
+    &:hover
+      color: #878080
+  .button-text
+    display: none
+  .task-name
+    float: left
+    text-shadow: 0px 1px 0px #fff
+    color: #968D8D
+    line-height: 30px
+    font-size: 14px
+    font-weight: lighter
+    position: absolute
+    right: 80px
+    left: 17px
+
+.main-counter
+  .current-pomodoro
+    background: #3577c3
+    color: #fff
+    line-height: 60px
+    height: 60px
+    text-align: center
+    text-transform: uppercase
+    letter-spacing: 2px
+    font-size: 13px
+  .time
+    font-size: 120px
+    background: #4985c9
+    display: block
+    color: #fff
+    text-align: center
+    padding: 20px 0
+    font-weight: 900
+    font-family: Lato
+    &.timeout
+      background: #ED3E3E
+
+.counter
+  position: relative
+  text-align: center
+
+.counter-controls
+  padding: 10px
+  display: inline-block
+  position: relative
+  overflow: hidden
+  .counting-controls
+    display: inline-block
+
+.button
+  background: #3577c3
+  text-transform: uppercase
+  padding: 8px 10px
+  cursor: pointer
+  color: #fff
+  border: none
+  box-shadow: 0 2px 0 #2C6CB7
