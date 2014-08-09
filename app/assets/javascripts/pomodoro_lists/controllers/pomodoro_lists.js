@@ -1,14 +1,14 @@
 angular.module("Pomodoro").controller("PomodoroListsController", [
-  "$scope", "$rootScope", "PomodoroLists",
-  function ($scope, $rootScope, PomodoroLists) {
+  "PomodoroLists", "PomodoroList",
+  function (PomodoroLists, PomodoroList) {
     var pomodoreLists = new PomodoroLists();
 
-    $scope.pomodoroLists = pomodoreLists.models;
+    this.pomodoroLists = pomodoreLists.models;
+
+    this.newList = function () {
+      pomodoreLists.add(new PomodoroList());
+    };
 
     pomodoreLists.fetch();
-
-    $rootScope.$on("new-pomodoro-list-saved", function (event, pomodoreList) {
-      pomodoreLists.add(pomodoreList);
-    });
   }
 ]);

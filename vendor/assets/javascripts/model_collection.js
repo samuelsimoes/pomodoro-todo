@@ -1,6 +1,6 @@
 /*
  * ModelCollection behavior for Angular.js
- * Version 0.0.1
+ * Version 0.0.2
  */
 angular.module("ModelCollection", []).factory("ExtendMethod", function () {
   return function (props) {
@@ -134,8 +134,8 @@ angular.module("ModelCollection").factory("CollectionBase", [
 ]);
 
 angular.module("ModelCollection").factory("ModelBase", [
-  "$http", "ExtendMethod",
-  function ($http, ExtendMethod) {
+  "$http", "ExtendMethod", "$q",
+  function ($http, ExtendMethod, $q) {
     var Model = function(attributes, options) {
       this.attributes = (attributes || {});
       this.initialize(attributes, options);
@@ -169,7 +169,7 @@ angular.module("ModelCollection").factory("ModelBase", [
         return request;
       },
 
-      destroy: function (options) {
+      destroyOnServer: function (options) {
         var request = $http(angular.extend({
           method: "DELETE",
           url: this.computedUrl()
@@ -180,6 +180,22 @@ angular.module("ModelCollection").factory("ModelBase", [
         }
 
         return request;
+      },
+
+      destroyOnlyInMemory: function () {
+        var defer = $q.defer();
+
+        if (this.collection) {
+          this.removeFromCollection();
+        }
+
+        defer.resolve();
+
+        return defer.promise;
+      },
+
+      destroy: function (options) {
+        return (this.isNew()) ? this.destroyOnlyInMemory() : this.destroyOnServer(options);
       },
 
       isNew: function () {
@@ -198,8 +214,12 @@ angular.module("ModelCollection").factory("ModelBase", [
         return url;
       },
 
-      set: function (attribute, value) {
-        this.attributes[attribute] = value;
+      set: function () {
+        if (angular.isObject(arguments[0])) {
+         angular.extend(this.attributes, arguments[0]);
+        } else {
+         this.attributes[arguments[0]] = arguments[1];
+        }
       },
 
       updateAttributes: function (data) {

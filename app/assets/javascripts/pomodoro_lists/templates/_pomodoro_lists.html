@@ -1,11 +1,15 @@
 <div class="pomodoro-list-link"
      ng-controller="PomodoroListController as list"
-     ng-repeat="pomodoroList in pomodoroLists"
+     ng-repeat="pomodoroList in lists.pomodoroLists"
      ui-sref-active="active"
      ng-class="{'edit-mode': list.editMode}">
 
   <form ng-submit="list.update()" class="form pomodoro-list-form">
-    <input type="text" ng-model="pomodoroList.attributes.title">
+    <input type="text"
+           ng-model="pomodoroList.attributes.title"
+           placeholder="Título da lista"
+           autofocus
+           ng-keyup="list.keyPress($event)">
   </form>
 
   <a ui-sref="pomodoro_lists.show({ pomodoroListId: pomodoroList.attributes.id })">
@@ -23,7 +27,7 @@
   </div>
 </div>
 
-<a href="#">
-  <i></i>
+<button ng-click="lists.newList()" class="new-list-btn">
+  <i class="fa fa-plus"></i>
   Nova lista
-</a>
+</button>
