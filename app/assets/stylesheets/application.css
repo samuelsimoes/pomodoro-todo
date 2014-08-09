@@ -16,6 +16,16 @@ body {
   height: 100%;
 }
 
+.form input[type=text] {
+  border: none;
+  font-size: 15px;
+  padding: 10px;
+  background: #F7F7F7;
+  border-top: 2px solid #E9E9E9;
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .main-call {
   background: #fff;
   color: #4985c9;
@@ -36,11 +46,30 @@ body {
   overflow: auto;
 }
 
+.pomodoro-list-form {
+  display: none;
+  position: absolute;
+  top: 9px;
+  left: 6px;
+  right: 9px;
+}
+
+.pomodoro-list-form input[type=text] {
+  position: absolute;
+  height: 32px;
+  font-size: 14px;
+  font-family: Helvetica, 'sans-serif';
+  font-weight: lighter;
+  background: #464E69;
+  color: #fff;
+  border-top: 1px solid #343B54;
+}
+
 .pomodoro-list-link {
   position: relative;
   display: block;
   background: #3b4256;
-  padding: 16px;
+  padding: 0 16px;
   font-weight: lighter;
   margin: 0 20px 15px 0;
   box-shadow: 0 2px 0 #262b39;
@@ -48,6 +77,9 @@ body {
 }
 
 .pomodoro-list-link a {
+  width: 100%;
+  display: block;
+  line-height: 50px;
   font-size: 14px;
   color: #fff;
   text-decoration: none;
@@ -61,6 +93,14 @@ body {
 }
 
 .pomodoro-list-link:hover .controls {
+  display: block;
+}
+
+.pomodoro-list-link.edit-mode .controls {
+  display: none;
+}
+
+.pomodoro-list-link.edit-mode .pomodoro-list-form {
   display: block;
 }
 
@@ -194,16 +234,6 @@ body {
 
 .counter-controls .counting-controls {
   display: inline-block;
-}
-
-.form input[type=text] {
-  border: none;
-  font-size: 15px;
-  padding: 10px;
-  background: #F7F7F7;
-  border-top: 2px solid #E9E9E9;
-  box-sizing: border-box;
-  width: 100%;
 }
 
 .button {
