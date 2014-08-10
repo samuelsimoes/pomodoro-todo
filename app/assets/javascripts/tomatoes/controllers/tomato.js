@@ -8,9 +8,9 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     $scope.update = function () {
-      var promise = $scope.tomato.save();
+      $scope.submitPromise = $scope.tomato.save();
 
-      promise.success(function () {
+      $scope.submitPromise.success(function () {
         $scope.editMode = false;
       });
     };

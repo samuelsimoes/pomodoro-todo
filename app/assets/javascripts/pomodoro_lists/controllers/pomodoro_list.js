@@ -22,7 +22,9 @@ angular.module("Pomodoro").controller("PomodoroListController", [
     this.update = function () {
       var that = this;
 
-      $scope.pomodoroList.save().success(function () {
+      $scope.submitPromise = $scope.pomodoroList.save();
+
+      $scope.submitPromise.success(function () {
         that.editMode = false;
       });
     };

@@ -7,6 +7,7 @@
 //= require model_collection
 //= require angular-rails-templates
 //= require_tree ./filters
+//= require_tree ./directives
 
 angular.module("Pomodoro", []);
 angular.module("PomodoroApp", [
@@ -15,7 +16,8 @@ angular.module("PomodoroApp", [
   "ui.sortable",
   "DurationFilter",
   "templates",
-  "ui.router"
+  "ui.router",
+  "LoadingFieldDirective"
 ]).config([
   "$httpProvider",
   function ($httpProvider) {
