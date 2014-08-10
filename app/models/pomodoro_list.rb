@@ -6,4 +6,8 @@ class PomodoroList < ActiveRecord::Base
   def running_pomodoro
     tomatoes.running.first
   end
+
+  def tomatoes_ids
+    tomatoes.map(&:id)
+  end
 end

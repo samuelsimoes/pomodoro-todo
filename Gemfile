@@ -11,8 +11,9 @@ gem 'rails', '4.1.4'
 
 gem 'jquery-rails'
 gem 'uglifier', '2.5.3'
-gem 'angular-rails-templates', '0.1.3'
 gem 'sass-rails', '4.0.3'
+gem 'handlebars_assets', '0.15'
 
 gem 'responders', '1.0.0'
 gem 'has_scope', '0.5.1'
+gem 'active_model_serializers', '0.8.1'

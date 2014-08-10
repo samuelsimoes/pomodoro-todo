@@ -6,6 +6,11 @@ class PomodoroListsController < ApplicationController
     respond_with @pomodoro_lists
   end
 
+  def show
+    pomodoro_list = PomodoroList.find(params[:id])
+    respond_with pomodoro_list
+  end
+
   def create
     @pomodoro_list = PomodoroList.create(pomodoro_list_params)
     respond_with @pomodoro_list
