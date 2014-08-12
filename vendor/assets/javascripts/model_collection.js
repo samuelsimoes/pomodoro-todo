@@ -1,6 +1,6 @@
 /*
  * ModelCollection behavior for Angular.js
- * Version 0.0.2
+ * Version 0.0.3
  */
 angular.module("ModelCollection", []).factory("ExtendMethod", function () {
   return function (props) {
@@ -34,7 +34,7 @@ angular.module("ModelCollection").factory("CollectionBase", [
           url: this.computedUrl()
         }, options));
 
-        request.success(angular.bind(this, this.populateCollection));
+        request.success(angular.bind(this, this.set));
 
         return request;
       },
@@ -46,7 +46,7 @@ angular.module("ModelCollection").factory("CollectionBase", [
           data: this.toJSON()
         }, options));
 
-        request.success(angular.bind(this, this.populateCollection));
+        request.success(angular.bind(this, this.set));
 
         return request;
       },
@@ -65,13 +65,13 @@ angular.module("ModelCollection").factory("CollectionBase", [
         return modelsArray;
       },
 
-      populateCollection: function (collectionData) {
+      set: function (collectionData) {
         for (var i = 0, l = collectionData.length; i < l; i ++) {
           var modelData = collectionData[i],
               foundModel = this.find(modelData.id);
 
           if (foundModel) {
-            foundModel.updateAttributes(modelData);
+            foundModel.set(modelData);
           } else {
             this.add(modelData, { skipSort: true, parse: true });
           }
@@ -152,7 +152,7 @@ angular.module("ModelCollection").factory("ModelBase", [
           url: this.computedUrl()
         }, options));
 
-        request.success(angular.bind(this, this.updateAttributes));
+        request.success(angular.bind(this, this.set));
 
         return request;
       },
@@ -164,7 +164,7 @@ angular.module("ModelCollection").factory("ModelBase", [
           data: (attributes || this.attributes)
         }, options));
 
-        request.success(angular.bind(this, this.updateAttributes));
+        request.success(angular.bind(this, this.set));
 
         return request;
       },
@@ -220,10 +220,6 @@ angular.module("ModelCollection").factory("ModelBase", [
         } else {
          this.attributes[arguments[0]] = arguments[1];
         }
-      },
-
-      updateAttributes: function (data) {
-        this.attributes = angular.extend(this.attributes, data);
       },
 
       removeFromCollection: function () {
