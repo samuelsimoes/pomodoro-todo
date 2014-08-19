@@ -14,6 +14,7 @@ angular.module("Pomodoro").controller("TomatoesController", [
 
     $scope.sortableOptions = {
       items: ".pomodoro-list-item",
+      cursor: "move",
       stop: function () {
         tomatoes.computeOrder().persistCollection();
       }
