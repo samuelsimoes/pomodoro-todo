@@ -3,6 +3,8 @@ class Tomato < ActiveRecord::Base
 
   belongs_to :pomodoro_list
 
+  validates :description, presence: true
+
   def define_order
     last_tomato = pomodoro_list.tomatoes.ordered.last
     self.order = last_tomato.blank? ? 0 : (last_tomato.order + 1)
