@@ -12,9 +12,14 @@
 </form>
 
 <div class="tomatoes-container">
+  <div id="tomatoes-container-loading-indicator" class="loading-indicator">
+    <i class="fa fa-spinner fa-spin"></i> Carregando...
+  </div>
+
   <div ng-model="tomatoes"
        ui-sortable="sortableOptions"
-       ng-controller="TomatoesController">
+       ng-controller="TomatoesController"
+       loading-container="{ indicatorSelector: '#tomatoes-container-loading-indicator' }">
     <div ng-include
          src="'tomatoes/templates/_tomato.html'"
          class="pomodoro-list-item"

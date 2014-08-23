@@ -6,6 +6,8 @@ angular.module("Pomodoro").controller("TomatoesController", [
 
     tomatoes.fetchUnstarted();
 
+    $scope.loadingPromise = tomatoes.fetchUnstarted();
+
     $scope.tomatoes = tomatoes.models;
 
     $scope.$on("new-tomato-saved", function (event, tomato) {

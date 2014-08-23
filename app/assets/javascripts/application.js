@@ -17,7 +17,8 @@ angular.module("PomodoroApp", [
   "DurationFilter",
   "templates",
   "ui.router",
-  "LoadingFieldDirective"
+  "LoadingFieldDirective",
+  "LoadingContainerDirective"
 ]).config([
   "$httpProvider",
   function ($httpProvider) {
