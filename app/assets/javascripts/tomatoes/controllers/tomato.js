@@ -4,7 +4,14 @@ angular.module("Pomodoro").controller("TomatoController", [
     $scope.editMode = false;
 
     $scope.enterEditMode = function () {
+      $scope.rollBackAttributes = angular.copy($scope.tomato.attributes);
       $scope.editMode = true;
+    };
+
+    $scope.keyPress = function (evt) {
+      if (evt.keyCode !== 27) { return; }
+      $scope.pomodoroList.set(this.rollBackAttributes);
+      $scope.editMode = false;
     };
 
     $scope.update = function () {
