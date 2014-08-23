@@ -9,8 +9,10 @@ angular.module("Pomodoro").controller("PomodoroListsController", [
       pomodoreLists.add(new PomodoroList());
     };
 
+    $scope.loadingPromise = pomodoreLists.fetch();
+
     // show the first pomodoro list
-    pomodoreLists.fetch().then(function () {
+    $scope.loadingPromise.then(function () {
       if (!pomodoreLists.models) { return; }
 
       $state.go("pomodoro_lists.show", {
