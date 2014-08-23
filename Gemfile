@@ -6,6 +6,7 @@ gem 'pg', '0.17.1'
 gem 'schema_plus', '1.5.3'
 
 gem 'rails_12factor', '0.0.2'
+gem 'unicorn', '4.8.3'
 gem 'heroku_rails_deflate', '1.0.3', group: :production
 
 gem 'rails', '4.1.4'
