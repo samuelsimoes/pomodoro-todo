@@ -18,7 +18,8 @@ angular.module("PomodoroApp", [
   "templates",
   "ui.router",
   "LoadingFieldDirective",
-  "LoadingContainerDirective"
+  "LoadingContainerDirective",
+  "FocusOnDirective"
 ]).config([
   "$httpProvider",
   function ($httpProvider) {

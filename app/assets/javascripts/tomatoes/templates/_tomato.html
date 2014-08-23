@@ -12,7 +12,8 @@
          ng-model="tomato.attributes.description"
          required
          ng-keyup="tomatoCtrl.keyPress($event)"
-         autofocus>
+         ng-blur="tomatoCtrl.cancelEdition()"
+         focus-on="tomatoDescription">
 </form>
 
 <div class="controls">

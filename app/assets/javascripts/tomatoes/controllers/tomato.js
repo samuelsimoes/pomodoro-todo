@@ -6,10 +6,15 @@ angular.module("Pomodoro").controller("TomatoController", [
     this.enterEditMode = function () {
       this.rollBackAttributes = angular.copy($scope.tomato.attributes);
       this.editMode = true;
+      $scope.$broadcast("focusOn", "tomatoDescription");
     };
 
     this.keyPress = function (evt) {
       if (evt.keyCode !== 27) { return; }
+      this.cancelEdition();
+    };
+
+    this.cancelEdition = function () {
       $scope.tomato.set(this.rollBackAttributes);
       this.editMode = false;
     };
