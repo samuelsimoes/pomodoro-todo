@@ -8,7 +8,7 @@
       ng-show="tomatoCtrl.editMode"
       class="form tomato-form">
   <input type="text"
-         loading-field
+         loading-field="{ disableField: false }"
          ng-model="tomato.attributes.description"
          required
          ng-keyup="tomatoCtrl.keyPress($event)"
