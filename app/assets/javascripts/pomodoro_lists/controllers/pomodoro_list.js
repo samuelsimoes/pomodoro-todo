@@ -38,7 +38,7 @@ angular.module("Pomodoro").controller("PomodoroListController", [
     };
 
     this.destroy = function () {
-      $scope.pomodoroList.destroy().then(function () {
+      $scope.destroyPromise = $scope.pomodoroList.destroy().then(function () {
         $rootScope.$broadcast("pomodoro-list-deleted", $scope.pomodoroList);
       });
     };

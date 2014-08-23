@@ -36,7 +36,7 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     this.remove = function () {
-      $scope.tomato.destroy();
+      $scope.destroyPromise = $scope.tomato.destroy();
     };
   }
 ]);

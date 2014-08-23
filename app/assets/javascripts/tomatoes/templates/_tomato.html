@@ -17,7 +17,12 @@
 </form>
 
 <div class="controls">
-  <button ng-click="tomatoCtrl.remove()" class="control-button">
+  <button ng-click="tomatoCtrl.remove()"
+          class="control-button"
+          disable-on-send="{
+            promiseVariable: 'destroyPromise',
+            disableText: '<i class=\'fa fa-spinner fa-spin\'></i>'
+          }">
     <i class="fa fa-trash-o"></i>
     <span class="button-text">Excluir</span>
   </button>

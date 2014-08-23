@@ -24,7 +24,11 @@
       <i class="fa fa-pencil"></i>
     </button>
 
-    <button ng-click="list.destroy()">
+    <button ng-click="list.destroy()"
+            disable-on-send="{
+              promiseVariable: 'destroyPromise',
+              disableText: '<i class=\'fa fa-spinner fa-spin\'></i>'
+            }">
       <i class="fa fa-times"></i>
     </button>
   </div>
