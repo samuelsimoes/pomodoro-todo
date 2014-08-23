@@ -1,36 +1,36 @@
 angular.module("Pomodoro").controller("TomatoController", [
   "$scope", "$rootScope",
   function ($scope, $rootScope) {
-    $scope.editMode = false;
+    this.editMode = false;
 
-    $scope.enterEditMode = function () {
-      $scope.rollBackAttributes = angular.copy($scope.tomato.attributes);
-      $scope.editMode = true;
+    this.enterEditMode = function () {
+      this.rollBackAttributes = angular.copy($scope.tomato.attributes);
+      this.editMode = true;
     };
 
-    $scope.keyPress = function (evt) {
+    this.keyPress = function (evt) {
       if (evt.keyCode !== 27) { return; }
-      $scope.pomodoroList.set(this.rollBackAttributes);
-      $scope.editMode = false;
+      $scope.tomato.set(this.rollBackAttributes);
+      this.editMode = false;
     };
 
-    $scope.update = function () {
+    this.update = function () {
       $scope.submitPromise = $scope.tomato.save();
 
-      $scope.submitPromise.success(function () {
-        $scope.editMode = false;
-      });
+      $scope.submitPromise.success(angular.bind(this, function () {
+        this.editMode = false;
+      }));
     };
 
-    $scope.showStartButton = function () {
+    this.showStartButton = function () {
       return $scope.$index === 0;
     };
 
-    $scope.start = function () {
+    this.start = function () {
       $rootScope.$broadcast("counter:start", $scope.tomato);
     };
 
-    $scope.remove = function () {
+    this.remove = function () {
       $scope.tomato.destroy();
     };
   }
