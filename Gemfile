@@ -18,3 +18,14 @@ gem 'sass-rails', '4.0.3'
 
 gem 'responders', '1.0.0'
 gem 'has_scope', '0.5.1'
+
+group :development, :test do
+  gem 'rspec-rails', '3.0.2'
+end
+
+group :test do
+  gem 'capybara', '2.4.1'
+  gem 'poltergeist', '1.5.1'
+  gem 'turnip', '1.2.2'
+  gem 'database_rewinder', '0.4.1'
+end
