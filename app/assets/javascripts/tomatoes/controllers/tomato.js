@@ -15,6 +15,7 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     this.cancelEdition = function () {
+      if (!this.editMode) { return; }
       $scope.tomato.set(this.rollBackAttributes);
       this.editMode = false;
     };
