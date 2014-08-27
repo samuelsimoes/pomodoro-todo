@@ -1,0 +1,9 @@
+important_task:
+  description: 'My important task!'
+  pomodoro_list: my_tasks_list
+  order: 1
+
+other_task:
+  description: 'My other important task!'
+  pomodoro_list: my_tasks_list
+  order: 2
