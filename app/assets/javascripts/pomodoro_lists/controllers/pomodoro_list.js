@@ -21,6 +21,8 @@ angular.module("Pomodoro").controller("PomodoroListController", [
     };
 
     this.cancelEdition = function () {
+      if (!this.editMode) { return; }
+
       if ($scope.pomodoroList.isNew()) {
         $scope.pomodoroList.destroy();
       } else {
