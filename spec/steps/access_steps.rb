@@ -12,6 +12,11 @@ module AccessSteps
     expect(page).to have_content('My important task!')
     expect(page).to have_content('My other important task!')
   end
+
+  step 'no running tomato' do
+    expect(page).to_not have_button('Finalizar')
+    expect(page).to_not have_button('Cancelar')
+  end
 end
 
 RSpec.configure { |c| c.include AccessSteps }
