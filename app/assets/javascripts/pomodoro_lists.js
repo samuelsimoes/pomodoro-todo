@@ -1,5 +1,5 @@
 //= require_tree ./pomodoro_lists
-//= require_tree ./tomatoes
+//= require_tree ./pomodoros
 
 angular.module("PomodoroApp").config([
   "$stateProvider", "$urlRouterProvider",
@@ -13,7 +13,7 @@ angular.module("PomodoroApp").config([
       }).
       state("pomodoro_lists.show", {
         url: "/:pomodoroListId",
-        templateUrl: "tomatoes/templates/base.html",
+        templateUrl: "pomodoros/templates/base.html",
         controller: [
           "$scope", "$rootScope", "$stateParams", "PomodoroList",
           function ($scope, $rootScope, $stateParams, PomodoroList) {
@@ -22,8 +22,8 @@ angular.module("PomodoroApp").config([
             $scope.pomodoroList = new PomodoroList({ id: $stateParams.pomodoroListId });
 
             // loads the actual list running pomodoro
-            $scope.pomodoroList.loadRunningPomodoro().then(function (tomato) {
-              $rootScope.$broadcast("counter:start", tomato);
+            $scope.pomodoroList.loadRunningPomodoro().then(function (pomodoro) {
+              $rootScope.$broadcast("counter:start", pomodoro);
             });
           }
         ]

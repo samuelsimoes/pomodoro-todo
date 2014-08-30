@@ -1,11 +1,11 @@
-angular.module("Pomodoro").factory("Tomato", [
+angular.module("Pomodoro").factory("Pomodoro", [
   "CounterEntity",
   function (CounterEntity) {
     return CounterEntity.extend({
       timeLengthInSeconds: 1500,
 
       urlRoot: function () {
-        return "pomodoro_lists/" + this.attributes.pomodoro_list_id + "/tomatoes";
+        return "pomodoro_lists/" + this.attributes.pomodoro_list_id + "/pomodoros";
       },
 
       start: function () {

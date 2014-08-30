@@ -1,12 +1,12 @@
-angular.module("Pomodoro").factory("Tomatoes", [
-  "CollectionBase", "Tomato",
-  function (CollectionBase, Tomato) {
+angular.module("Pomodoro").factory("Pomodoros", [
+  "CollectionBase", "Pomodoro",
+  function (CollectionBase, Pomodoro) {
     return CollectionBase.extend({
       url: function () {
-        return "/pomodoro_lists/" + this.options.pomodoroListId + "/tomatoes";
+        return "/pomodoro_lists/" + this.options.pomodoroListId + "/pomodoros";
       },
 
-      model: Tomato,
+      model: Pomodoro,
 
       comparator: function (a, b) {
         return a.attributes.order - b.attributes.order;

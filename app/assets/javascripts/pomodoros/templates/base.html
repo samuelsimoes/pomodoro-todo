@@ -1,0 +1,29 @@
+<div ng-include
+     src="'pomodoros/templates/_counter.html'"
+     class="main-counter"
+     ng-controller="CounterController as counter"></div>
+
+<form action="" class="form pomodoro-form new-pomodoro-form" ng-controller="NewPomodoroController" ng-submit="save()">
+  <input type="text"
+         placeholder="Criar um novo pomodoro..."
+         loading-field
+         required
+         ng-model="pomodoro.attributes.description">
+</form>
+
+<div class="pomodoros-container">
+  <div id="pomodoros-container-loading-indicator" class="loading-indicator">
+    <i class="fa fa-spinner fa-spin"></i> Carregando...
+  </div>
+
+  <div ng-model="pomodoros"
+       ui-sortable="sortableOptions"
+       ng-controller="PomodorosController"
+       loading-container="{ indicatorSelector: '#pomodoros-container-loading-indicator' }">
+    <div ng-include
+         src="'pomodoros/templates/_pomodoro.html'"
+         class="pomodoro-list-item"
+         ng-repeat="pomodoro in pomodoros"
+         ng-controller="PomodoroController as pomodoroCtrl"></div>
+  </div>
+</div>

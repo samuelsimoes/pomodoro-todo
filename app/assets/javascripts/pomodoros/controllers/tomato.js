@@ -1,12 +1,12 @@
-angular.module("Pomodoro").controller("TomatoController", [
+angular.module("Pomodoro").controller("PomodoroController", [
   "$scope", "$rootScope",
   function ($scope, $rootScope) {
     this.editMode = false;
 
     this.enterEditMode = function () {
-      this.rollBackAttributes = angular.copy($scope.tomato.attributes);
+      this.rollBackAttributes = angular.copy($scope.pomodoro.attributes);
       this.editMode = true;
-      $scope.$broadcast("focusOn", "tomatoDescription");
+      $scope.$broadcast("focusOn", "pomodoroDescription");
     };
 
     this.keyPress = function (evt) {
@@ -16,12 +16,12 @@ angular.module("Pomodoro").controller("TomatoController", [
 
     this.cancelEdition = function () {
       if (!this.editMode) { return; }
-      $scope.tomato.set(this.rollBackAttributes);
+      $scope.pomodoro.set(this.rollBackAttributes);
       this.editMode = false;
     };
 
     this.update = function () {
-      $scope.submitPromise = $scope.tomato.save();
+      $scope.submitPromise = $scope.pomodoro.save();
 
       $scope.submitPromise.success(angular.bind(this, function () {
         this.editMode = false;
@@ -33,11 +33,11 @@ angular.module("Pomodoro").controller("TomatoController", [
     };
 
     this.start = function () {
-      $rootScope.$broadcast("counter:start", $scope.tomato);
+      $rootScope.$broadcast("counter:start", $scope.pomodoro);
     };
 
     this.remove = function () {
-      $scope.destroyPromise = $scope.tomato.destroy();
+      $scope.destroyPromise = $scope.pomodoro.destroy();
     };
   }
 ]);

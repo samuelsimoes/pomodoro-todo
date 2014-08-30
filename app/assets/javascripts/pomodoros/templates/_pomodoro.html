@@ -1,23 +1,23 @@
 <p class="task-name"
-   ng-hide="tomatoCtrl.editMode"
-   ng-click="tomatoCtrl.enterEditMode()">
-  {{ tomato.attributes.description }}
+   ng-hide="pomodoroCtrl.editMode"
+   ng-click="pomodoroCtrl.enterEditMode()">
+  {{ pomodoro.attributes.description }}
 </p>
 
-<form ng-submit="tomatoCtrl.update()"
-      ng-show="tomatoCtrl.editMode"
-      class="form tomato-form">
+<form ng-submit="pomodoroCtrl.update()"
+      ng-show="pomodoroCtrl.editMode"
+      class="form pomodoro-form">
   <input type="text"
          loading-field="{ disableField: false }"
-         ng-model="tomato.attributes.description"
+         ng-model="pomodoro.attributes.description"
          required
-         ng-keyup="tomatoCtrl.keyPress($event)"
-         ng-blur="tomatoCtrl.cancelEdition()"
-         focus-on="tomatoDescription">
+         ng-keyup="pomodoroCtrl.keyPress($event)"
+         ng-blur="pomodoroCtrl.cancelEdition()"
+         focus-on="pomodoroDescription">
 </form>
 
 <div class="controls">
-  <button ng-click="tomatoCtrl.remove()"
+  <button ng-click="pomodoroCtrl.remove()"
           class="control-button"
           disable-on-send="{
             promiseVariable: 'destroyPromise',
@@ -27,8 +27,8 @@
     <span class="button-text">Excluir</span>
   </button>
 
-  <button ng-click="tomatoCtrl.start()"
-          ng-show="tomatoCtrl.showStartButton()"
+  <button ng-click="pomodoroCtrl.start()"
+          ng-show="pomodoroCtrl.showStartButton()"
           class="control-button">
     <i class="fa fa-play"></i>
     <span class="button-text">Iniciar</span>
