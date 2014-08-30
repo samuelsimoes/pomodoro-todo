@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :running_pomodoro
     end
 
-    resources :tomatoes do
+    resources :pomodoros do
       post :update_collection_order, on: :collection
 
       member do

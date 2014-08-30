@@ -1,4 +1,4 @@
-class Tomato < ActiveRecord::Base
+class Pomodoro < ActiveRecord::Base
   before_create :define_order
 
   belongs_to :pomodoro_list
@@ -6,8 +6,8 @@ class Tomato < ActiveRecord::Base
   validates :description, presence: true
 
   def define_order
-    last_tomato = pomodoro_list.tomatoes.ordered.last
-    self.order = last_tomato.blank? ? 0 : (last_tomato.order + 1)
+    last_pomodoro = pomodoro_list.pomodoros.ordered.last
+    self.order = last_pomodoro.blank? ? 0 : (last_pomodoro.order + 1)
   end
 
   def self.ordered
@@ -29,7 +29,7 @@ class Tomato < ActiveRecord::Base
   end
 
   def start!
-    raise OtherTomatoRunning if pomodoro_list.running_pomodoro.present?
+    raise OtherPomodoroRunning if pomodoro_list.running_pomodoro.present?
     update(started_at: Time.current)
   end
 
@@ -41,5 +41,5 @@ class Tomato < ActiveRecord::Base
     update(started_at: nil)
   end
 
-  class OtherTomatoRunning < StandardError; end
+  class OtherPomodoroRunning < StandardError; end
 end

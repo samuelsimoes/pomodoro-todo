@@ -12,7 +12,7 @@ module CounterSteps
   end
 
   step 'a running pomodoro in my current list' do
-    Tomato.first.start!
+    Pomodoro.first.start!
   end
 
   step 'I click in the finish button' do

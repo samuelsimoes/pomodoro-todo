@@ -1,9 +1,9 @@
 class PomodoroList < ActiveRecord::Base
   validates :title, presence: true
 
-  has_many :tomatoes, dependent: :destroy
+  has_many :pomodoros, dependent: :destroy
 
   def running_pomodoro
-    tomatoes.running.first
+    pomodoros.running.first
   end
 end
