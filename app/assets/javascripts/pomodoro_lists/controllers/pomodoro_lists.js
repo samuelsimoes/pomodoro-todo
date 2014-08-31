@@ -13,7 +13,7 @@ angular.module("Pomodoro").controller("PomodoroListsController", [
 
     // show the first pomodoro list
     $scope.loadingPromise.then(function () {
-      if (!pomodoreLists.models) { return; }
+      if (!pomodoreLists.models || $state.params.pomodoroListId) { return; }
 
       $state.go("pomodoro_lists.show", {
         pomodoroListId: pomodoreLists.models[0].attributes.id
