@@ -32,6 +32,8 @@ angular.module("Pomodoro").controller("CounterController", [
     this.stop = function () {
       var stopPromise = $q.defer();
 
+      $scope.stopPromise = stopPromise.promise;
+
       this.currentCounterEntity.stop().then(function () {
         that.cleanCounter();
         stopPromise.resolve();
@@ -70,7 +72,8 @@ angular.module("Pomodoro").controller("CounterController", [
     };
 
     this.cancel = function () {
-      this.currentCounterEntity.cancel().then(angular.bind(this, this.onCancelCounter));
+      $scope.cancelPromise = this.currentCounterEntity.cancel();
+      $scope.cancelPromise.then(angular.bind(this, this.onCancelCounter));
     };
 
     this.shortBreak = function () {

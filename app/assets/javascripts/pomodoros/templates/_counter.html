@@ -9,12 +9,22 @@
 
   <div class="counter-controls">
     <div class="counting-controls" ng-show="counter.showControls()">
-      <button ng-click="counter.stop()" class="button">
+      <button ng-click="counter.stop()"
+              class="button"
+              disable-on-send="{
+                promiseVariable: 'stopPromise',
+                disableText: 'Finalizando...'
+              }">
         <i class="fa fa-check-square-o"></i>
         Finalizar
       </button>
 
-      <button ng-click="counter.cancel()" class="button">
+      <button ng-click="counter.cancel()"
+              class="button"
+              disable-on-send="{
+                promiseVariable: 'cancelPromise',
+                disableText: 'Cancelando...'
+              }">
         <i class="fa fa-times"></i>
         Cancelar
       </button>
