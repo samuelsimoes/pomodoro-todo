@@ -26,6 +26,6 @@ end
 group :test do
   gem 'capybara', '2.4.3'
   gem 'poltergeist', '1.5.1'
-  gem 'turnip', '1.2.2'
+  gem 'turnip', '1.2.4'
   gem 'database_rewinder', '0.4.1'
 end
