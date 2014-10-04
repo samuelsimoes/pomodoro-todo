@@ -125,7 +125,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    schema_plus (1.5.3)
+    schema_plus (1.6.0)
       activerecord (>= 3.2)
       valuable
     sprockets (2.11.0)
@@ -174,7 +174,7 @@ DEPENDENCIES
   responders (= 1.1.1)
   rspec-rails (= 3.0.2)
   sass-rails (= 4.0.3)
-  schema_plus (= 1.5.3)
+  schema_plus (= 1.6.0)
   turnip (= 1.2.2)
   uglifier (= 2.5.3)
   unicorn (= 4.8.3)
