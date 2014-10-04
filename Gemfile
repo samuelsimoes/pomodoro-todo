@@ -20,7 +20,7 @@ gem 'responders', '1.1.1'
 gem 'has_scope', '0.5.1'
 
 group :development, :test do
-  gem 'rspec-rails', '3.0.2'
+  gem 'rspec-rails', '3.1.0'
 end
 
 group :test do
