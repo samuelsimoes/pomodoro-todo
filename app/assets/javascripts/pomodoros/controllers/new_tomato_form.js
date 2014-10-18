@@ -1,21 +1,21 @@
 angular.module("Pomodoro").controller("NewPomodoroController", [
   "$scope", "$rootScope", "Pomodoro",
   function ($scope, $rootScope, Pomodoro) {
-    var buildNewModel = function() {
-      $scope.pomodoro =
+    this.buildNewModel = function() {
+      this.pomodoro =
         new Pomodoro({ pomodoro_list_id: $scope.stateParams.pomodoroListId });
     };
 
-    $scope.save = function () {
-      $scope.submitPromise = $scope.pomodoro.save();
-
-      $scope.submitPromise.success(function () {
-        $rootScope.$broadcast("new-pomodoro-saved", $scope.pomodoro);
-        $scope.errors = {};
-        buildNewModel();
-      });
+    this.save = function () {
+      $scope.submitPromise = this.pomodoro.save();
+      $scope.submitPromise.success(angular.bind(this, this.onSave));
     };
 
-    buildNewModel();
+    this.onSave = function () {
+      $rootScope.$broadcast("new-pomodoro-saved", this.pomodoro);
+      this.buildNewModel();
+    };
+
+    this.buildNewModel();
   }
 ]);

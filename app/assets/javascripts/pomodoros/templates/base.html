@@ -3,12 +3,14 @@
      class="main-counter"
      ng-controller="CounterController as counter"></div>
 
-<form action="" class="form pomodoro-form new-pomodoro-form" ng-controller="NewPomodoroController" ng-submit="save()">
+<form ng-controller="NewPomodoroController as newPomodoroForm"
+      class="form pomodoro-form new-pomodoro-form"
+      ng-submit="newPomodoroForm.save()">
   <input type="text"
          placeholder="Criar um novo pomodoro..."
          loading-field
          required
-         ng-model="pomodoro.attributes.description">
+         ng-model="newPomodoroForm.pomodoro.attributes.description">
 </form>
 
 <div class="pomodoros-container">
