@@ -9,7 +9,7 @@ gem 'rails_12factor', '0.0.2'
 gem 'unicorn', '4.8.3'
 gem 'heroku_rails_deflate', '1.0.3', group: :production
 
-gem 'rails', '4.1.7'
+gem 'rails', '4.1.8'
 
 gem 'jquery-rails'
 gem 'uglifier', '2.5.3'
